@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { ShowInputDTO } from "../business/entities/Show";
 import { CustomError } from "../business/error/CustomError";
-import { Authenticator } from '../business/services/Authenticator';
-import { HashManager } from '../business/services/HashManager';
 import { IdGenerator } from '../business/services/IdGenerator';
 import { ShowDatabase } from '../data/ShowDatabase';
 import { ShowBusiness } from './../business/ShowBusiness';
@@ -10,8 +8,6 @@ import { ShowBusiness } from './../business/ShowBusiness';
 
 const showBusiness = new ShowBusiness(
  new IdGenerator(),
- new HashManager,
- new Authenticator(),
  new ShowDatabase()
 );
 
