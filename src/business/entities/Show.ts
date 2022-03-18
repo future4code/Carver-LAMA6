@@ -16,3 +16,7 @@ export interface ShowInputDTO {
  end_time: number;
  band_id: string;
 }
+
+export interface ShowOutputDTO {
+ 
+}

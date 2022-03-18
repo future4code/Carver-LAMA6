@@ -1,5 +1,5 @@
 import { ShowDatabase } from './../data/ShowDatabase';
-import { ShowInputDTO } from './entities/Show';
+import { Show, ShowInputDTO } from './entities/Show';
 import { Authenticator } from './services/Authenticator';
 import { HashManager } from './services/HashManager';
 import { IdGenerator } from './services/IdGenerator';
@@ -26,4 +26,16 @@ export class ShowBusiness {
    show.band_id
   );
  }
+
+ async getShowsByDate(date: string): Promise<Show[] | undefined> {
+  const shows = await this.showDatabase.getShowsByDate(date)
+  return shows
+ }
+
+ async getShowByTime(time: number): Promise<Show | undefined> {
+  const show = await this.showDatabase.getShowsByTime(time)
+
+  return show
+ }
+
 }

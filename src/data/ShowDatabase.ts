@@ -39,7 +39,7 @@ export class ShowDatabase extends BaseDatabase {
   }
  }
 
- public async getShowsByDate(date: string): Promise<Show[]> {
+ public async getShowsByDate(date: string): Promise<Show[] | undefined> {
   try {
    const result = await BaseDatabase.connection
     .select("*")
@@ -54,4 +54,20 @@ export class ShowDatabase extends BaseDatabase {
    throw new CustomError(500, "An unexpected error ocurred");
   }
  }
+
+ public async getShowsByTime(start_time: number): Promise<Show | undefined> {
+  try {
+   const result = await BaseDatabase.connection
+    .select("*")
+    .from(ShowDatabase.TABLE_NAME)
+    .where({ start_time });
+
+   const show: Show = result[0]
+   return show
+  } catch (error) {
+   throw new CustomError(500, "An unexpected error ocurred");
+  }
+ }
+
+
 }
