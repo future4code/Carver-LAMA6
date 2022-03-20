@@ -49,4 +49,21 @@ export class UserDatabase extends BaseDatabase {
       throw new CustomError(500, 'An unexpected error ocurred')
     }
   }
+
+  public async getAllUser(name: string): Promise<User> {
+    try {
+      const result = await BaseDatabase.connection
+        .select('*')
+        .from(UserDatabase.TABLE_NAME)
+        .where({ name })
+
+      if (!result[1]) {
+        throw new CustomError(401, 'Repeated name!')
+      }
+
+      return UserDatabase.toUserModel(result[0])
+    } catch (error) {
+      throw new CustomError(500, 'An unexpected error ocurred')
+    }
+  }
 }
