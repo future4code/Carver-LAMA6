@@ -1,4 +1,5 @@
 import { UserRole } from "../src/business/entities/User"
+import { CustomError } from "../src/business/error/CustomError"
 import { UserBusiness } from "../src/business/UserBusiness"
 
 let idGenerator = { generate: jest.fn() } as any
@@ -36,8 +37,8 @@ describe("Login", () => {
      email: "astrodev@lbn.com.br",
      password: "123546"
     })
-  } catch (error: any) {
-   console.log(error);
+  } catch (error) {
+    console.log(error);
 
    expect(error.statusCode).toEqual(401)
    expect(error.message).toEqual("Invalid credentials!")
